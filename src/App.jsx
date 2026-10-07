@@ -1,5 +1,6 @@
 import Hero from "./components/Heroo"
 import NavBar from "./components/NavBar"
+import Projects from "./components/Projects"
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
     <div>
       <NavBar />
       <Hero />
-      <section id="projetos" className="min-h-screen border-b border-line" />
+      <Projects />
       <section id="sobre" className="min-h-screen border-b border-line" />
       <section id="contato" className="min-h-screen border-b border-line" />
     </div>

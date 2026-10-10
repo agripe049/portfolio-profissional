@@ -1,3 +1,4 @@
+import About from "./components/About"
 import Hero from "./components/Heroo"
 import NavBar from "./components/NavBar"
 import Projects from "./components/Projects"
@@ -10,7 +11,7 @@ function App() {
       <NavBar />
       <Hero />
       <Projects />
-      <section id="sobre" className="min-h-screen border-b border-line" />
+      <About />
       <section id="contato" className="min-h-screen border-b border-line" />
     </div>
   )

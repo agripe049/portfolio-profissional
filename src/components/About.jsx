@@ -13,6 +13,13 @@ const item = {
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+const STACK_GROUPS = [
+    { title: "Front-end", items: ["React", "JavaScript", "Tailwind CSS"] },
+    { title: "Back-end", items: ["Node.js", "Express"] },
+    { title: "Dados", items: ["Firebase", "MySQL"] },
+    { title: "Ferramentas", items: ["Git", "GitHub", "Vercel"] },
+];
+
 const About = () => {
     return (
         <section id='sobre' className="min-h-screen flex items-center border-t border-line">
@@ -39,6 +46,26 @@ const About = () => {
                         No dia a dia uso React, Vite, Firebase e Tailwind. Também estou
                         estudando Go pra abrir outras frentes.
                     </motion.p>
+
+                    <motion.div variants={item} className="pt-4 space-y-5">
+                        {STACK_GROUPS.map((g) => (
+                            <div key={g.title}>
+                                <h3 className="font-display font-semibold text-base text-text">
+                                    {g.title}
+                                </h3>
+                                <div className="flex flex-wrap gap-2.5 mt-3">
+                                    {g.items.map((t) => (
+                                        <span
+                                            key={t}
+                                            className="px-4 py-1.5 rounded-full bg-surface border border-line text-sm text-textdim"
+                                        >
+                                            {t}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </motion.div>
                 </div>
             </motion.div>
         </section>

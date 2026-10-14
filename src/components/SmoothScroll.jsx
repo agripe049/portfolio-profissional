@@ -7,7 +7,7 @@ export function useLenis() {
     return useContext(LenisContext);
 }
 
-const SmoothScroll = () => {
+const SmoothScroll = ({ children }) => {
 
     const [lenisInstance, setLenisInstance] = useState(null);
 

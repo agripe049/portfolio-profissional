@@ -68,12 +68,6 @@ const Hero = () => {
         animate="show"
         className="max-w-6xl mx-auto w-full px-6 sm:px-10 pt-28 pb-16 grid md:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
         <div className="">
-          <motion.div variants={item} className="inline-flex items-center gap-2 rounded-full border border-violet/30 bg-surface px-4 py-2 text-sm text-textdim mb-6">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="#8B5CF6">
-              <path d="M12 2l1.6 5.8L19 9l-5.4 1.2L12 16l-1.6-5.8L5 9l5.4-1.2z" />
-            </svg>
-            Disponível para novos projetos
-          </motion.div>
 
           <motion.h1 variants={item} className="font-display font-bold text-5xl sm:text-6xl md:text-5xl leading-[1.05] text-text">
             Olá! Me chamo <span className='text-gradient'>Matheus Agripe</span>.
@@ -107,7 +101,7 @@ const Hero = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={s.label}
-                className="w-10 h-10 rounded-full bg-surface border border-line flex items-center justify-center text-textdim hover:text-violet hover:border-violet/50 transition-colors"
+                className="w-10 h-10 rounded-full bg-surface border border-line flex items-center justify-center text-textdim hover:text-accent hover:border-accent/50 transition-colors"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   {s.icon}
@@ -128,7 +122,7 @@ const Hero = () => {
             <a
               href="#contato"
               onClick={(e) => scrollToSection(e, "contato")}
-              className="px-6 py-3 bg-surface border border-line text-text font-body rounded-xl hover:border-violet/50 transition-colors"
+              className="px-6 py-3 bg-surface border border-line text-text font-body rounded-xl hover:border-accent/50 transition-colors"
             >
               Contato
             </a>

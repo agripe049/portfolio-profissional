@@ -74,7 +74,7 @@ const NavBar = () => {
                 {l.label}
               </a>
               {active === l.id && (
-                <span className="absolute -bottom-2 left-0 right-0 h-[2px] bg-gradient-to-r from-violet to-blue rounded-full" />
+                <span className="absolute -bottom-2 left-0 right-0 h-[2px] bg-gradient-to-r from-accent to-accent2 rounded-full" />
               )}
             </li>
           ))}

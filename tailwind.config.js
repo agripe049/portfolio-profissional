@@ -4,14 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#F7F7FB",
+        bg: "#F5F7F3",
         surface: "#FFFFFF",
-        line: "rgba(27, 23, 38, 0.08)",
-        text: "#1B1726",
-        textdim: "#6B6478",
-        violet: "#8B5CF6",
-        blue: "#5B8DEF",
-        teal: "#2DD4BF",
+        line: "rgba(20, 32, 27, 0.08)",
+        text: "#14201B",
+        textdim: "#5B6B63",
+        accent: "#1F6F54",
+        accent2: "#8FB339",
       },
       fontFamily: {
         display: ["'Sora'", "sans-serif"],

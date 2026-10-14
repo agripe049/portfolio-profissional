@@ -17,7 +17,7 @@ const item = {
 };
 
 const inputClasses =
-    "w-full bg-surface border border-line rounded-xl px-4 py-3 font-body text-text focus-visible:border-violet transition-colors";
+    "w-full bg-surface border border-line rounded-xl px-4 py-3 font-body text-text focus-visible:border-accent transition-colors";
 
 const Contact = () => {
     const [form, setForm] = useState({ name: "", business: "", email: "", message: "" });
@@ -75,7 +75,7 @@ const Contact = () => {
                     <motion.a
                         variants={item}
                         href={`mailto:${CONTACT_EMAIL}`}
-                        className="inline-block mt-6 font-body text-text underline decoration-line underline-offset-4 hover:decoration-violet transition-colors"
+                        className="inline-block mt-6 font-body text-text underline decoration-line underline-offset-4 hover:decoration-accent transition-colors"
                     >
                         {CONTACT_EMAIL}
                     </motion.a>

@@ -66,7 +66,7 @@ const TiltPhoto = () => {
                     scale: { delay: 1.3, duration: 0.4 },
                     y: { delay: 1.7, duration: 3, repeat: Infinity, ease: "easeInOut" },
                 }}
-                className="absolute -bottom-2 -right-2 w-14 h-14 rounded-2xl bg-surface border border-line shadow-lg flex items-center justify-center text-violet"
+                className="absolute -bottom-2 -right-2 w-14 h-14 rounded-2xl bg-surface border border-line shadow-lg flex items-center justify-center text-accent"
             >
                 <svg
                     width="24"

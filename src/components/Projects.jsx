@@ -28,7 +28,7 @@ function ProjectCover({ project }) {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
             ) : (
-                <div className="w-full h-full bg-gradient-to-br from-violet/20 to-blue/20 flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-accent/20 to-accent2/20 flex items-center justify-center">
                     <span className="font-display font-bold text-5xl text-gradient">
                         {project.client.charAt(0)}
                     </span>
@@ -78,7 +78,7 @@ const Projects = () => {
 
                             {/* MUDOU: o texto todo agora vive dentro desta div, que ganhou o "p-6" */}
                             <div className="flex flex-col flex-1 p-6">
-                                <span className="font-body text-sm text-violet">{project.type}</span>
+                                <span className="font-body text-sm text-accent">{project.type}</span>
 
                                 <h3 className="font-display font-bold text-2xl text-text mt-2">
                                     {project.client}
@@ -97,7 +97,7 @@ const Projects = () => {
                                         href={project.link}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="mt-auto pt-5 font-body text-sm font-semibold text-text underline decoration-line underline-offset-4 hover:decoration-violet transition-colors"
+                                        className="mt-auto pt-5 font-body text-sm font-semibold text-text underline decoration-line underline-offset-4 hover:decoration-accent transition-colors"
                                     >
                                         {project.linkLabel}
                                     </a>

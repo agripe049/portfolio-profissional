@@ -57,30 +57,6 @@ const TiltPhoto = () => {
                     )}
                 </div>
             </motion.div>
-
-            <motion.div
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
-                transition={{
-                    opacity: { delay: 1.3, duration: 0.4 },
-                    scale: { delay: 1.3, duration: 0.4 },
-                    y: { delay: 1.7, duration: 3, repeat: Infinity, ease: "easeInOut" },
-                }}
-                className="absolute -bottom-2 -right-2 w-14 h-14 rounded-2xl bg-surface border border-line shadow-lg flex items-center justify-center text-accent"
-            >
-                <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    <path d="M8 8l-4 4 4 4M11 6l-2 12M16 8l4 4-4 4" />
-                </svg>
-            </motion.div>
         </div>
     )
 }

@@ -1,9 +1,8 @@
-import { li } from "framer-motion/client";
 import { useLenis } from "./SmoothScroll"
 import TiltPhoto from "./TiltPhoto";
 import { motion } from "framer-motion";
 
-const STACK = ["React", "Vite", "Firebase", "Tailwind"];
+const STACK = ["JavaScript", "React", "Firebase", "TailwindCSS", "MySQL", "Node.js", "Express"];
 
 const SOCIALS = [
   {
@@ -69,17 +68,14 @@ const Hero = () => {
         className="max-w-6xl mx-auto w-full px-6 sm:px-10 pt-28 pb-16 grid md:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
         <div className="">
 
-          <motion.h1 variants={item} className="font-display font-bold text-5xl sm:text-6xl md:text-5xl leading-[1.05] text-text">
+          <motion.h1 variants={item} className="font-display font-bold text-4xl sm:text-5xl leading-[1.05] text-text">
             Olá! Me chamo <span className='text-gradient'>Matheus Agripe</span>.
           </motion.h1>
 
-          <motion.p variants={item} className="font-body text-xl text-text/80 mt-4">
-            Crio sistemas que resolvem problema de verdade.
-          </motion.p>
-
           <motion.p variants={item} className="font-body text-textdim mt-4 max-w-md leading-relaxed">
-            Construo aplicações pra donos de barbearia,
-            oficina e confeitaria. Sem departamento de TI, sem tempo pra planilha.
+            Sou desenvolvedor full stack, com foco em React, Node.js e MySQL.
+            Troco o seu caderno por um sistema mais eficiente.
+            Faço sistemas sob medida.
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap gap-2.5 mt-7">
@@ -91,6 +87,22 @@ const Hero = () => {
                 {s}
               </span>
             ))}
+          </motion.div>
+          <motion.div variants={item} className="flex flex-wrap gap-4 mt-8">
+            <a
+              href="#projetos"
+              onClick={(e) => scrollToSection(e, "projetos")}
+              className="px-6 py-3 bg-text text-bg font-body font-semibold rounded-xl hover:opacity-90 transition-opacity"
+            >
+              Ver projetos
+            </a>
+            <a
+              href="#contato"
+              onClick={(e) => scrollToSection(e, "contato")}
+              className="px-6 py-3 bg-surface border border-line text-text font-body rounded-xl hover:border-accent/50 transition-colors"
+            >
+              Contato
+            </a>
           </motion.div>
 
           <motion.div variants={item} className="flex gap-3 mt-8">
@@ -111,22 +123,6 @@ const Hero = () => {
           </motion.div>
 
 
-          <motion.div variants={item} className="flex flex-wrap gap-4 mt-8">
-            <a
-              href="#projetos"
-              onClick={(e) => scrollToSection(e, "projetos")}
-              className="px-6 py-3 bg-text text-bg font-body font-semibold rounded-xl hover:opacity-90 transition-opacity"
-            >
-              Ver projetos
-            </a>
-            <a
-              href="#contato"
-              onClick={(e) => scrollToSection(e, "contato")}
-              className="px-6 py-3 bg-surface border border-line text-text font-body rounded-xl hover:border-accent/50 transition-colors"
-            >
-              Contato
-            </a>
-          </motion.div>
         </div>
 
         <motion.div variants={item}>

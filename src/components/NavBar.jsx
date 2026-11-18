@@ -30,6 +30,7 @@ const NavBar = () => {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll);
+    onScroll(); // já acerta o fundo do header se a página carregar no meio da rolagem
 
     const els = LINKS.map((l) => document.getElementById(l.id)).filter(Boolean);
     const observer = new IntersectionObserver(

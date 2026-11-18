@@ -42,20 +42,18 @@ const TiltPhoto = () => {
                 whileHover={{ scale: 1.04 }}
                 className="w-full h-full rounded-full overflow-hidden border-4 border-surface shadow-xl bg-surface flex items-center justify-center"
             >
-                <div className="w-full h-full rounded-full overflow-hidden border-4 border-surface shadow-xl bg-surface flex items-center justify-center">
-                    {!failed ? (
-                        <img
-                            src={perfil}
-                            alt="Foto de perfil"
-                            className="w-full h-full object-cover"
-                            onError={() => setFailed(true)}
-                        />
-                    ) : (
-                        <span className="font-display font-bold text-6xl text-gradient">
-                            M
-                        </span>
-                    )}
-                </div>
+                {!failed ? (
+                    <img
+                        src={perfil}
+                        alt="Foto de Matheus Agripe"
+                        className="w-full h-full object-cover"
+                        onError={() => setFailed(true)}
+                    />
+                ) : (
+                    <span className="font-display font-bold text-6xl text-gradient">
+                        M
+                    </span>
+                )}
             </motion.div>
         </div>
     )

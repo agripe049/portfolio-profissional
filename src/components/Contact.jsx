@@ -29,6 +29,14 @@ const Contact = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        // Honeypot: o campo "website" fica invisível pra pessoas, só robô preenche.
+        // Finge que deu certo pra não dar pista ao robô, mas não envia nada.
+        if (e.target.website.value) {
+            setStatus("success");
+            return;
+        }
+
         setStatus("sending");
 
         try {
@@ -82,6 +90,12 @@ const Contact = () => {
                 </div>
 
                 <motion.form variants={item} onSubmit={handleSubmit} className="space-y-5 max-w-lg">
+                    {/* Honeypot anti-spam: escondido de pessoas e de leitores de tela */}
+                    <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                        <label htmlFor="website">Não preencha este campo</label>
+                        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                    </div>
+
                     <div>
                         <label htmlFor="name" className="block font-body text-sm text-textdim mb-2">
                             Seu nome

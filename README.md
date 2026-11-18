@@ -1,16 +1,48 @@
-# React + Vite
+# Portfólio — Matheus Agripe
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Portfólio pessoal de desenvolvedor full stack, com projetos reais feitos para negócios locais.
 
-Currently, two official plugins are available:
+## Seções
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Início**: apresentação, stack e links (GitHub, LinkedIn, WhatsApp)
+- **Projetos**: cards com capa e modal de detalhes de cada sistema
+- **Sobre**: quem sou e as tecnologias que uso
+- **Contato**: formulário que envia e-mail via EmailJS
 
-## React Compiler
+## Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite
+- Tailwind CSS
+- Framer Motion (animações)
+- Lenis (rolagem suave)
+- EmailJS (formulário de contato)
 
-## Expanding the Oxlint configuration
+## Rodando localmente
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm install
+cp .env.example .env   # e preencha com as chaves do EmailJS
+npm run dev
+```
+
+Outros comandos:
+
+```bash
+npm run build     # gera a versão de produção em dist/
+npm run preview   # serve o build localmente
+npm run lint      # roda o oxlint
+```
+
+## Variáveis de ambiente
+
+| Variável | Onde encontrar |
+|---|---|
+| `VITE_EMAILJS_SERVICE_ID` | EmailJS → Email Services |
+| `VITE_EMAILJS_TEMPLATE_ID` | EmailJS → Email Templates |
+| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS → Account → Public Key |
+
+O `.env` não vai pro Git. No deploy, cadastre essas variáveis no painel da hospedagem (ex: Vercel → Settings → Environment Variables).
+
+## Editando os projetos
+
+Os projetos ficam em [`src/data/projects.js`](src/data/projects.js). Os campos `demo`, `repo` e `post` são opcionais: quando ficam `null`, o botão correspondente não aparece.

@@ -1,6 +1,10 @@
 import { projects } from "../data/projects";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useLenis } from "./SmoothScroll";
+
+const buttonSecondary =
+    "px-5 py-2.5 bg-surface border border-line text-text font-body text-sm font-semibold rounded-xl hover:border-accent/50 transition-colors";
 
 const container = {
     hidden: {},
@@ -41,6 +45,53 @@ function ProjectCover({ project }) {
 }
 
 function ProjectModal({ project, onClose }) {
+    const lenis = useLenis();
+    const dialogRef = useRef(null);
+    const closeButtonRef = useRef(null);
+
+    useEffect(() => {
+        // Guarda quem tinha o foco (ex: o botão "Ver mais") pra devolver ao fechar
+        const previousFocus = document.activeElement;
+        closeButtonRef.current?.focus();
+
+        // Trava a página de fundo enquanto o modal está aberto
+        lenis?.stop();
+        document.body.style.overflow = "hidden";
+
+        function handleKeyDown(e) {
+            if (e.key === "Escape") {
+                onClose();
+                return;
+            }
+
+            // Mantém o Tab circulando só entre os elementos do modal
+            if (e.key === "Tab" && dialogRef.current) {
+                const focusables = dialogRef.current.querySelectorAll(
+                    "a[href], button:not([disabled]), video[controls]"
+                );
+                if (focusables.length === 0) return;
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        }
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            lenis?.start();
+            document.body.style.overflow = "";
+            previousFocus?.focus?.();
+        };
+    }, [lenis, onClose]);
+
     return (
         <motion.div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-text/60"
@@ -50,16 +101,19 @@ function ProjectModal({ project, onClose }) {
             onClick={onClose}
         >
             <motion.div
+                ref={dialogRef}
                 role="dialog"
                 aria-modal="true"
                 aria-label={project.client}
-                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl bg-surface p-6 sm:p-8"
+                data-lenis-prevent
+                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto overscroll-contain rounded-2xl bg-surface p-6 sm:p-8"
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 24 }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
+                    ref={closeButtonRef}
                     type="button"
                     onClick={onClose}
                     aria-label="Fechar"
@@ -119,15 +173,41 @@ function ProjectModal({ project, onClose }) {
                     </div>
                 </div>
 
-                {project.link && (
-                    <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-block mt-6 px-5 py-2.5 bg-text text-bg font-body text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity"
-                    >
-                        Ver repositório
-                    </a>
+                {(project.demo || project.repo || project.post) && (
+                    <div className="flex flex-wrap gap-3 mt-6">
+                        {project.demo && (
+                            <a
+                                href={project.demo}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="px-5 py-2.5 bg-text text-bg font-body text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity"
+                            >
+                                Acessar projeto
+                            </a>
+                        )}
+
+                        {project.repo && (
+                            <a
+                                href={project.repo}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={buttonSecondary}
+                            >
+                                Ver repositório
+                            </a>
+                        )}
+
+                        {project.post && (
+                            <a
+                                href={project.post}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={buttonSecondary}
+                            >
+                                Ver post no LinkedIn
+                            </a>
+                        )}
+                    </div>
                 )}
             </motion.div>
         </motion.div>
@@ -137,6 +217,9 @@ function ProjectModal({ project, onClose }) {
 const Projects = () => {
 
     const [selected, setSelected] = useState(null);
+
+    // useCallback mantém a mesma função entre renders, senão o efeito do modal rodaria de novo
+    const closeModal = useCallback(() => setSelected(null), []);
 
     return (
         <section id="projetos" className="min-h-screen">
@@ -158,8 +241,7 @@ const Projects = () => {
                     variants={item}
                     className="font-body text-textdim mt-4 max-w-xl leading-relaxed"
                 >
-                    Cada projeto nasceu de um problema real de um negócio local, e não de
-                    um exercício.
+                    A maioria nasceu de um problema real de um negócio local. Os outros, de estudo aplicado.
                 </motion.p>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
@@ -172,10 +254,8 @@ const Projects = () => {
                             onClick={() => setSelected(project)}
                             className="group flex flex-col overflow-hidden rounded-2xl bg-surface border border-line shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer"
                         >
-                            {/* NOVO: a capa fica no topo do card */}
                             <ProjectCover project={project} />
 
-                            {/* MUDOU: o texto todo agora vive dentro desta div, que ganhou o "p-6" */}
                             <div className="flex flex-col flex-1 p-6">
                                 <span className="font-body text-sm text-accent">{project.type}</span>
 
@@ -188,9 +268,9 @@ const Projects = () => {
                                 </p>
 
                                 <div className="mt-auto pt-5 flex items-center justify-between gap-4">
+                                    {/* Sem onClick próprio: o clique sobe até o card, que abre o modal */}
                                     <button
                                         type="button"
-                                        onClick={() => setSelected(project)}
                                         className="font-body text-sm font-semibold text-accent hover:underline underline-offset-4"
                                     >
                                         Ver mais
@@ -205,7 +285,7 @@ const Projects = () => {
 
             <AnimatePresence>
                 {selected && (
-                    <ProjectModal project={selected} onClose={() => setSelected(null)} />
+                    <ProjectModal project={selected} onClose={closeModal} />
                 )}
             </AnimatePresence>
         </section>

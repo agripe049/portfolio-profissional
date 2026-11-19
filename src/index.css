@@ -43,3 +43,37 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Hero: telas em órbita */
+.hero-float {
+  animation: hero-bob 8s ease-in-out infinite alternate;
+}
+
+@keyframes hero-bob {
+  from { transform: translateY(-7px); }
+  to { transform: translateY(7px); }
+}
+
+.hero-rings {
+  transform-origin: 50% 50%;
+  animation: hero-spin 60s linear infinite;
+}
+
+@keyframes hero-spin {
+  to { transform: rotate(360deg); }
+}
+
+.hero-bar-fill {
+  animation: hero-fill 6s linear forwards;
+}
+
+@keyframes hero-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.hero-paused .hero-float,
+.hero-paused .hero-rings,
+.hero-paused .hero-bar-fill {
+  animation-play-state: paused;
+}
